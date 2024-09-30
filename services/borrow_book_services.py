@@ -14,9 +14,6 @@ class borrow_book_services:
             raise HTTPException(status_code=404,detail=f"Book with id {book_id} not found")
         if book_data.count==0:
              raise HTTPException(status_code=404,detail="Book is unavailable")
-        memeber_data=member_queries.getMemberById(member_id)
-        if memeber_data is None:
-                raise HTTPException(status_code=404,detail=f"Member with id {member_id} not found")
         
         
         new_borrow=models.BorrowedBook(
