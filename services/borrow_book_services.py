@@ -46,9 +46,9 @@ class borrow_book_services:
 
         book_data.count+=1
 
-        db.commit()
-        db.refresh(book_data)
-        db.refresh(borrow_book_data)
+        borrow_book_queries.commit()
+        borrow_book_queries.refresh(book_data)
+        borrow_book_queries.refresh(borrow_book_data)
         
         return {"message":f"Member with id {member_id} has returned the book with id {book_id}!"}
 

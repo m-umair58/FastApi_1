@@ -17,3 +17,6 @@ class borrow_book_queries:
 
     def refresh(fresh):
         db.refresh(fresh)
+
+    def commit():
+        db.commit()
