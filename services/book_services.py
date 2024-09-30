@@ -15,16 +15,8 @@ class book_services:
         book_data=book_queries.getBookByName(book.name)
         if book_data:
             raise HTTPException(status_code=403,detail="Book Already exists")
-        new_book=models.Book(
-            name=book.name,
-            genre=book.genre,
-            author=book.author,
-            pub_year=book.pub_year,
-            count=book.count
-        )
-        db.add(new_book)
-        db.commit()
-
+        new_book=models.Book(**book.model_dump())# send what's inside the book
+        book_queries.add_book(new_book)
         return {"message":"Book added successfully"}
     
     def delete_book(book_id:int):
@@ -32,7 +24,6 @@ class book_services:
         if book_data is None:
             raise HTTPException(status_code=404,detail=f"Member with id {book_id} is either already deleted or doesn't exists")
         
-        db.delete(book_data)
-        db.commit()
+        book_queries.delete_book(book_data)
 
         return {"Message":"Book has been deleted successfully"}

@@ -17,3 +17,7 @@ class member_queries:
     def add_member(member):
         db.add(member)
         db.commit()
+
+    def delete_memeber(member):
+        db.delete(member)
+        db.commit()

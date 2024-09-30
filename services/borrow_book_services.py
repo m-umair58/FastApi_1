@@ -8,9 +8,6 @@ from datetime import date
 
 class borrow_book_services:
     def borrow_book(member_id:int,book_id:int):
-        # borrow_book_data=borrow_book_queries.getBorrowedBook(book_id,member_id)
-        # if borrow_book_data:
-        #     raise HTTPException(status_code=404,detail=f"Book with id {book_id} not found")
              
         book_data=book_queries.getBookById(book_id)
         if book_data is None:
@@ -26,12 +23,12 @@ class borrow_book_services:
             book_id=book_id,
             member_id=member_id
         )
-        db.add(new_borrow)
-
         book_data.count-=1
-        db.commit()
-        db.refresh(book_data)
-        db.refresh(new_borrow)
+
+        borrow_book_queries.add_borrow(new_borrow)
+        borrow_book_queries.refresh(book_data)
+        borrow_book_queries.refresh(new_borrow)
+        
 
         return {"message":"Book Borrowed"}
 

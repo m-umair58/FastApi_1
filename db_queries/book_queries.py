@@ -7,3 +7,11 @@ class book_queries:
     
     def getBookByName(name):
         return db.query(models.Book).filter(models.Book.name==name).first()
+    
+    def add_book(book):
+        db.add(book)
+        db.commit()
+
+    def delete_book(book):
+        db.delete(book)
+        db.commit()

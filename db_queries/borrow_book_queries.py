@@ -10,3 +10,10 @@ class borrow_book_queries:
         models.BorrowedBook.member_id == member_id,
         models.BorrowedBook.book_id == book_id
     ).first()
+
+    def add_borrow(borrow):
+        db.add(borrow)
+        db.commit()
+
+    def refresh(fresh):
+        db.refresh(fresh)

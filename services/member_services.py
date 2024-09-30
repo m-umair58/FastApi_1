@@ -30,7 +30,7 @@ class member_services:
         )
 
         member_queries.add_member(new_member)
-        
+
         return {"message":"Member added successfully"}
     
     def delete_member(member_id:int):
@@ -38,7 +38,6 @@ class member_services:
         if member_data is None:
             raise HTTPException(status_code=404,detail=f"Member with id {member_id} is either already deleted or doesn't exists")
         
-        db.delete(member_data)
-        db.commit()
+        member_queries.delete_memeber(member_data)
 
         return {"Message":"Member has been deleted successfully"}

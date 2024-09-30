@@ -5,8 +5,6 @@ from schemas import User_data
 
 router = APIRouter()
 
-
-
 @router.post('/borrow_book')
 async def borrow_book(book_id,user_data:User_data=Depends(get_user_info)):#get_user_info is returning a dictionary
 
