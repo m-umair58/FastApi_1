@@ -28,9 +28,9 @@ class member_services:
             email=member.email,
             password=get_password_hash(member.password)
         )
-        db.add(new_member)
-        db.commit()
 
+        member_queries.add_member(new_member)
+        
         return {"message":"Member added successfully"}
     
     def delete_member(member_id:int):
