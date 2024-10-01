@@ -7,7 +7,6 @@ router = APIRouter()
 
 @router.post('/borrow_book')
 async def borrow_book(book_id,user_data:User_data=Depends(get_user_info)):#get_user_info is returning a dictionary
-
     return borrow_book_services.borrow_book(user_data['id'],book_id)# thats why we are using "user_data['id']""
 
 @router.post('/return_book')
