@@ -8,7 +8,8 @@ class borrow_book_queries:
     def getBorrowedBook(book_id,member_id):
         return db.query(models.BorrowedBook).filter(
         models.BorrowedBook.member_id == member_id,
-        models.BorrowedBook.book_id == book_id
+        models.BorrowedBook.book_id == book_id,
+        models.BorrowedBook.return_date==None
     ).first()
 
     def add_borrow(borrow):

@@ -5,6 +5,7 @@ from fastapi import HTTPException
 import models
 from database import db
 from datetime import date
+from starlette import status
 
 class borrow_book_services:
     def borrow_book(member_id:int,book_id:int):
@@ -39,6 +40,8 @@ class borrow_book_services:
             raise HTTPException(status_code=404,detail=f"Book with id {book_id} not found")
         
         borrow_book_data=borrow_book_queries.getBorrowedBook(book_id,member_id)
+        if borrow_book_data is None:
+                raise HTTPException(status_code=status.HTTP_208_ALREADY_REPORTED,detail="Book has already been returned!")
         borrow_book_data.return_date=date.today()
 
         book_data.count+=1
